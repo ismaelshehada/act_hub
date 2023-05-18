@@ -26,3 +26,25 @@ class ManagerRadius {
   static double r10 = SizeUtil.setRadius(10);
   static double r12 = SizeUtil.setRadius(12);
 }
+
+class ManagerIconSize {
+  static double s2 = 2;
+  static double s4 = 4;
+  static double s6 = 6;
+  static double s8 = 8;
+  static double s10 = 10;
+  static double s12 = 12;
+}
+
+class ManagerOpacity {
+  static double op0_1 = 0.1;
+  static double op0_2 = 0.2;
+  static double op0_3 = 0.3;
+  static double op0_4 = 0.4;
+  static double op0_5 = 0.5;
+  static double op0_6 = 0.6;
+  static double op0_7 = 0.7;
+  static double op0_8 = 0.8;
+  static double op0_9 = 0.9;
+  static double op0_10 = 1;
+}
