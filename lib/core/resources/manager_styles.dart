@@ -1,6 +1,7 @@
-import 'dart:ui';
+
 
 import 'package:act_hub/core/resources/manager_fonts.dart';
+import 'package:flutter/material.dart';
 
 TextStyle _textStyle({
   required double fontSize,
