@@ -7,6 +7,8 @@ class ManagerHeight {
   static double h8 = SizeUtil.setHeight(8);
   static double h10 = SizeUtil.setHeight(10);
   static double h12 = SizeUtil.setHeight(12);
+  static double h86 = SizeUtil.setHeight(86);
+  static double h206 = SizeUtil.setHeight(206);
 }
 
 class ManagerWidth {
@@ -16,6 +18,8 @@ class ManagerWidth {
   static double w8 = SizeUtil.setWidth(8);
   static double w10 = SizeUtil.setWidth(10);
   static double w12 = SizeUtil.setWidth(12);
+  static double w16 = SizeUtil.setWidth(16);
+  static double w20 = SizeUtil.setWidth(20);
   static double w166 = SizeUtil.setWidth(166);
 }
 
