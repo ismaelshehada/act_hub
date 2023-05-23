@@ -12,7 +12,7 @@ ThemeData managerDarkThemeData() {
     primaryColorLight: ManagerColors.primaryColorDark,
 
     // this for disabled button colors
-    disabledColor: ManagerColors.textColor,
+    disabledColor: ManagerColors.disabledColor,
     splashColor: ManagerColors.greyLight,
     scaffoldBackgroundColor: ManagerColors.scaffoldBackgroundColorDark,
 
