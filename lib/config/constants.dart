@@ -7,3 +7,7 @@ class Constants {
   static const double elevationButton = 0;
   static const int outBoardingDurationTime = 1;
 }
+
+class ConstantsPrefsKey {
+  static const String out_boarding_viewed = 'out_boarding_viewed';
+}
