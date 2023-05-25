@@ -2,6 +2,7 @@ class ManagerStrings {
   static const String acthub = 'Acthub';
   static const String noRoutFound = 'page not Found';
   static const String skip = 'Skip';
+  static const String get_start = "Let's get started";
   static const String outBoardingTitle1 = 'Find your cozy working space';
   static const String outBoardingTitle2 = 'Find your cozy Courses';
   static const String outBoardingTitle3 = 'Find your recording studio';
