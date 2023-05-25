@@ -1,3 +1,4 @@
+import 'package:act_hub/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub/features/splash/presentation/controller/splash_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -8,10 +9,15 @@ initSplash() {
   Get.put<SplashController>(SplashController());
 }
 
-finishSplash() {
+disposeSplash() {
   Get.delete<SplashController>();
 }
 
 initOutBoarding() {
-  finishSplash();
+  disposeSplash();
+  Get.put<OutBoardingController>(OutBoardingController());
+}
+
+disposeOutBoarding() {
+  Get.delete<OutBoardingController>();
 }
