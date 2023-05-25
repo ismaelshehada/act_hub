@@ -76,8 +76,11 @@ class OutBoardingView extends StatelessWidget {
                     ],
                   ),
                   replacement: mainButton(
+                      onPress: () {
+                        controller.getStart();
+                      },
                       child: Text(
-                        ManagerStrings.skip,
+                        ManagerStrings.get_start,
                         style: getRegularTextStyle(
                             fontSize: ManagerFontSize.s14,
                             color: ManagerColors.textColor),
