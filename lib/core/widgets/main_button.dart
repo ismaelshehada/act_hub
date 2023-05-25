@@ -1,9 +1,9 @@
 import 'package:act_hub/config/constants.dart';
-import 'package:act_hub/core/resources/manager_colors.dart';
+import 'package:act_hub/core/extensions/extensions.dart';
 import 'package:act_hub/core/resources/manager_sizes.dart';
 import 'package:flutter/material.dart';
 
-Widget MainButton({
+Widget mainButton({
   required Widget child,
   void Function()? onPress,
   ShapeBorder? shapeBorder,
@@ -19,9 +19,9 @@ Widget MainButton({
             borderRadius: BorderRadius.circular(
           ManagerRadius.r12,
         )),
-    color: color ?? ManagerColors.transparent,
-    minWidth: minWidth ?? ManagerWidth.w16,
-    height: height ?? ManagerHeight.h16,
+    color: color.onNull(),
+    minWidth: minWidth.onNull(),
+    height: height.onNull(),
     elevation: elevation ?? Constants.elevationButton,
     child: child,
   );
