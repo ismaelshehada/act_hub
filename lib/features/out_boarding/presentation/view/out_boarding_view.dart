@@ -7,6 +7,7 @@ import 'package:act_hub/core/resources/manager_styles.dart';
 
 import 'package:act_hub/core/widgets/main_button.dart';
 import 'package:act_hub/features/out_boarding/presentation/controller/out_boarding_controller.dart';
+import 'package:act_hub/features/out_boarding/presentation/view/widgets/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +32,7 @@ class OutBoardingView extends StatelessWidget {
                   maintainState: true,
                   child: Align(
                     alignment: AlignmentDirectional.topEnd,
-                    child: MainButton(
+                    child: mainButton(
                       onPress: () {
                         controller.skipPage();
                       },
@@ -61,34 +62,20 @@ class OutBoardingView extends StatelessWidget {
                     children: [
                       Visibility(
                         visible: controller.showBackButton(),
-                        child: MainButton(
-                            onPress: () {
-                              controller.nextPage();
+                        child: circleButton(
+                            opPressed: () {
+                              controller.previousPage();
                             },
-                            child: const Icon(
-                              Icons.arrow_back_outlined,
-                              color: ManagerColors.iconColor,
-                            ),
-                            shapeBorder: const CircleBorder(),
-                            minWidth: ManagerWidth.w50,
-                            height: ManagerHeight.h50,
-                            color: ManagerColors.primaryColor),
+                            iconData: Icons.arrow_back_outlined),
                       ),
-                      MainButton(
-                          onPress: () {
+                      circleButton(
+                          opPressed: () {
                             controller.nextPage();
                           },
-                          child: const Icon(
-                            Icons.arrow_forward_outlined,
-                            color: ManagerColors.iconColor,
-                          ),
-                          shapeBorder: const CircleBorder(),
-                          minWidth: ManagerWidth.w50,
-                          height: ManagerHeight.h50,
-                          color: ManagerColors.primaryColor),
+                          iconData: Icons.arrow_forward_outlined)
                     ],
                   ),
-                  replacement: MainButton(
+                  replacement: mainButton(
                       child: Text(
                         ManagerStrings.skip,
                         style: getRegularTextStyle(
