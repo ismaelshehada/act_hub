@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import '../resources/manager_colors.dart';
 
 extension NonNullString on String? {
