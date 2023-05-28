@@ -12,4 +12,5 @@ class ManagerStrings {
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.';
   static const String outBoardingSubTitle3 =
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.';
+  static const String bearer = 'Bearer';
 }

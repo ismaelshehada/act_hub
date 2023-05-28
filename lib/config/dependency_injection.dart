@@ -1,6 +1,9 @@
+import 'package:act_hub/core/network/app_api.dart';
+import 'package:act_hub/core/network/dio_factory.dart';
 import 'package:act_hub/core/storage/local/app_settings_shared_preferences.dart';
 import 'package:act_hub/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub/features/splash/presentation/controller/splash_controller.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -19,6 +22,12 @@ initModule() async {
 
   instance.registerLazySingleton<AppSettingsSharedPreferences>(
       () => AppSettingsSharedPreferences(instance()));
+
+  instance.registerLazySingleton(() => DioFactory());
+
+  Dio dio = await instance<DioFactory>().getDio();
+
+  instance.registerLazySingleton<AppApi>(() => AppApi(dio));
 }
 
 initSplash() {
