@@ -1,5 +1,4 @@
 class Constants {
-  static const String baseUrl = 'http://acthub.com';
   static const double deviceWidth = 375;
   static const double deviceHeight = 812;
   static const int splashDuration = 3;
@@ -10,4 +9,12 @@ class Constants {
 
 class ConstantsPrefsKey {
   static const String out_boarding_viewed = 'out_boarding_viewed';
+  static const String token = 'token';
+}
+
+class ApiConstant {
+  static const String baseUrl = 'http://acthub.com';
+  static const String authorization = 'authorization';
+  static const int sendTimeoutDuration = 120;
+  static const int receiveTimeoutDuration = 60;
 }
