@@ -17,4 +17,8 @@ class ApiConstant {
   static const String authorization = 'authorization';
   static const int sendTimeoutDuration = 120;
   static const int receiveTimeoutDuration = 60;
+  static const String email = 'email';
+  static const String password = 'password';
 }
+
+
