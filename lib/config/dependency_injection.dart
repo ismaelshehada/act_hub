@@ -1,3 +1,4 @@
+import 'package:act_hub/core/internet_checker/internet_checker.dart';
 import 'package:act_hub/core/network/app_api.dart';
 import 'package:act_hub/core/network/dio_factory.dart';
 import 'package:act_hub/core/storage/local/app_settings_shared_preferences.dart';
@@ -7,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final instance = GetIt.instance;
@@ -28,6 +30,9 @@ initModule() async {
   Dio dio = await instance<DioFactory>().getDio();
 
   instance.registerLazySingleton<AppApi>(() => AppApi(dio));
+
+  instance.registerLazySingleton<NetworkInfoImpl>(
+      () => NetworkInfoImpl(InternetConnectionCheckerPlus()));
 }
 
 initSplash() {
