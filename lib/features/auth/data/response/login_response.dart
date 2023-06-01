@@ -1,10 +1,12 @@
+import 'package:act_hub/config/constants.dart';
+import 'package:act_hub/core/base_response/base_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'login_response.g.dart';
 
 @JsonSerializable()
-class LoginResponse {
-  @JsonKey(name: 'token')
+class LoginResponse extends BaseResponse {
+  @JsonKey(name: ApiConstant.token)
   String? token;
 
   LoginResponse(this.token);
