@@ -2,6 +2,10 @@ import 'package:act_hub/core/internet_checker/internet_checker.dart';
 import 'package:act_hub/core/network/app_api.dart';
 import 'package:act_hub/core/network/dio_factory.dart';
 import 'package:act_hub/core/storage/local/app_settings_shared_preferences.dart';
+import 'package:act_hub/features/auth/data/data_source/remote_login_data_source.dart';
+import 'package:act_hub/features/auth/data/repository_impl/login_repository_impl.dart';
+import 'package:act_hub/features/auth/domin/repository/login_repository.dart';
+import 'package:act_hub/features/auth/domin/use_case/login_use_case.dart';
 import 'package:act_hub/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
@@ -50,4 +54,31 @@ initOutBoarding() {
 
 disposeOutBoarding() {
   Get.delete<OutBoardingController>();
+}
+
+initLoginModule() {
+  if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
+    instance.registerLazySingleton<RemoteLoginDataSource>(
+      () => RemoteLoginDataSourceImplement(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<LoginRepository>()) {
+    instance.registerLazySingleton<LoginRepository>(
+      () => LoginRepositoryImpl(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerFactory<LoginUseCase>(
+      () => LoginUseCase(
+        instance(),
+      ),
+    );
+  }
 }
