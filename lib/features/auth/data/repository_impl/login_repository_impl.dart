@@ -18,8 +18,14 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<Either<Failure, Login>> login(LoginRequest loginRequest) async {
     if (await networkInfoImpl.isConnected) {
-      final response = await _dataSourceImplement.login(loginRequest);
-      return Right(response.toDomain());
+      try {
+        final response = await _dataSourceImplement.login(loginRequest);
+        return Right(response.toDomain());
+      } catch (e) {
+        return Left(
+          ErrorHandler.handle(e).failure,
+        );
+      }
     } else {
       return Left(
         Failure(ResponseCode.NO_INTERNET_CONNECTION.value,
