@@ -41,4 +41,16 @@ class AppSettingsSharedPreferences {
   String getPassword() {
     return _sharedPreferences.getString(ConstantsPrefsKey.password).onNull();
   }
+
+  Future<void> setLoggedIn() async {
+    await _sharedPreferences.setBool(ConstantsPrefsKey.loggedIn, true);
+  }
+
+  bool loggedIn() {
+    return _sharedPreferences.getBool(ConstantsPrefsKey.loggedIn).onNull();
+  }
+
+  void clear() {
+    _sharedPreferences.clear();
+  }
 }
