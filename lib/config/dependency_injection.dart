@@ -6,6 +6,7 @@ import 'package:act_hub/features/auth/data/data_source/remote_login_data_source.
 import 'package:act_hub/features/auth/data/repository_impl/login_repository_impl.dart';
 import 'package:act_hub/features/auth/domin/repository/login_repository.dart';
 import 'package:act_hub/features/auth/domin/use_case/login_use_case.dart';
+import 'package:act_hub/features/auth/presentation/controller/login_controller.dart';
 import 'package:act_hub/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
@@ -57,6 +58,8 @@ disposeOutBoarding() {
 }
 
 initLoginModule() {
+
+
   if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
     instance.registerLazySingleton<RemoteLoginDataSource>(
       () => RemoteLoginDataSourceImplement(
@@ -75,10 +78,12 @@ initLoginModule() {
   }
 
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
-    instance.registerFactory<LoginUseCase>(
+    instance.registerLazySingleton<LoginUseCase>(
       () => LoginUseCase(
         instance(),
       ),
     );
   }
+
+  Get.put<LoginController>(LoginController());
 }

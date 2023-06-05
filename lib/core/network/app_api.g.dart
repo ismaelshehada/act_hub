@@ -13,7 +13,7 @@ class _AppApi implements AppApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://acthub.com';
+    baseUrl ??= 'http://act-hub.actit.ps';
   }
 
   final Dio _dio;
