@@ -80,7 +80,7 @@ class OutBoardingView extends StatelessWidget {
                         controller.getStart();
                       },
                       child: Text(
-                        ManagerStrings.get_start,
+                        ManagerStrings.getStart,
                         style: getRegularTextStyle(
                             fontSize: ManagerFontSize.s14,
                             color: ManagerColors.textColor),

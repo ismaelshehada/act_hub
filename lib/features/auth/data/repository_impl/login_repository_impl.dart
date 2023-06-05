@@ -9,21 +9,26 @@ import 'package:act_hub/features/auth/domin/repository/login_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
-  final RemoteLoginDataSourceImplement _dataSourceImplement;
-
+  final RemoteLoginDataSource _dataSource;
   final NetworkInfoImpl networkInfoImpl;
 
-  LoginRepositoryImpl(this._dataSourceImplement, this.networkInfoImpl);
+  LoginRepositoryImpl(this._dataSource, this.networkInfoImpl);
 
   @override
   Future<Either<Failure, Login>> login(LoginRequest loginRequest) async {
     if (await networkInfoImpl.isConnected) {
-      final response = await _dataSourceImplement.login(loginRequest);
-      return Right(response.toDomain());
+      try {
+        final response = await _dataSource.login(loginRequest);
+        return Right(response.toDomain());
+      } catch (e) {
+        return Left(
+          ErrorHandler.handle(e).failure,
+        );
+      }
     } else {
       return Left(
         Failure(ResponseCode.NO_INTERNET_CONNECTION.value,
-            ApiConstant.no_internet_connection),
+            ApiConstant.noInternetConnection),
       );
     }
   }

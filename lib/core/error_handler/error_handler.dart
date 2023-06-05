@@ -1,3 +1,4 @@
+
 import 'package:act_hub/config/constants.dart';
 import 'package:dio/dio.dart';
 
@@ -13,6 +14,7 @@ class ErrorHandler implements Exception {
 
   ErrorHandler.handle(dynamic error) {
     if (error is DioError) {
+
       failure = Failure(
           error.response!.statusCode ?? ResponseCode.BAD_REQUEST.value,
           error.response?.data[ApiConstant.message] ??
@@ -21,7 +23,7 @@ class ErrorHandler implements Exception {
     } else {
       failure = Failure(
         ResponseCode.BAD_REQUEST.value,
-        ApiConstant.bad_request,
+        ApiConstant.badRequest,
       );
     }
   }
