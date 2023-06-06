@@ -1,12 +1,12 @@
-import 'package:act_hub/config/constants.dart';
-import 'package:act_hub/core/error_handler/error_handler.dart';
-import 'package:act_hub/core/internet_checker/internet_checker.dart';
-import 'package:act_hub/features/auth/data/data_source/remote_register_data_source.dart';
 import 'package:act_hub/features/auth/data/mapper/register_mapper.dart';
-import 'package:act_hub/features/auth/data/request/register_request.dart';
-import 'package:act_hub/features/auth/domin/model/register.dart';
-import 'package:act_hub/features/auth/domin/repository/register_repository.dart';
 import 'package:dartz/dartz.dart';
+import '../../../../config/constants.dart';
+import '../../../../core/error_handler/error_handler.dart';
+import '../../../../core/internet_checker/internet_checker.dart';
+import '../../domin/model/register.dart';
+import '../../domin/repository/register_repository.dart';
+import '../data_source/remote_register_data_source.dart';
+import '../request/register_request.dart';
 
 class RegisterRepositoryImpl implements RegisterRepository {
   final RemoteRegisterDataSource _dataSource;

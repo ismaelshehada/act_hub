@@ -1,14 +1,11 @@
 import 'package:act_hub/config/constants.dart';
 import 'package:act_hub/config/dependency_injection.dart';
 import 'package:act_hub/core/extensions/extensions.dart';
-import 'package:act_hub/core/resources/manager_colors.dart';
-import 'package:act_hub/core/resources/manager_fonts.dart';
 import 'package:act_hub/core/resources/manager_sizes.dart';
 import 'package:act_hub/core/resources/manager_strings.dart';
-import 'package:act_hub/core/resources/manager_styles.dart';
 import 'package:act_hub/core/state_render/state_renderer.dart';
 import 'package:act_hub/core/storage/local/app_settings_shared_preferences.dart';
-import 'package:act_hub/core/widgets/main_button.dart';
+import 'package:act_hub/core/widgets/dialog_button.dart';
 import 'package:act_hub/features/auth/domin/use_case/login_use_case.dart';
 import 'package:act_hub/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,19 +40,11 @@ class LoginController extends GetxController {
           padding: EdgeInsets.symmetric(
             horizontal: ManagerWidth.w65,
           ),
-          child: mainButton(
-            child: Text(
-              ManagerStrings.ok,
-              style: getMediumTextStyle(
-                fontSize: ManagerFontSize.s16,
-                color: ManagerColors.white,
-              ),
-            ),
-            onPress: () {
+          child: dialogButton(
+            onPressed: () {
               Get.back();
             },
-            color: ManagerColors.primaryColor,
-            height: ManagerHeight.h40,
+            message: ManagerStrings.ok,
           ),
         ),
         retryAction: () {},
@@ -74,19 +63,12 @@ class LoginController extends GetxController {
           padding: EdgeInsets.symmetric(
             horizontal: ManagerWidth.w65,
           ),
-          child: mainButton(
-            child: Text(
-              ManagerStrings.ok,
-              style: getMediumTextStyle(
-                fontSize: ManagerFontSize.s16,
-                color: ManagerColors.white,
-              ),
-            ),
-            onPress: () {
+          child: dialogButton(
+            onPressed: () {
               Get.back();
+              Get.offAllNamed(Routes.homeView);
             },
-            color: ManagerColors.primaryColor,
-            height: ManagerHeight.h40,
+            message: ManagerStrings.ok,
           ),
         ),
         retryAction: () {},
