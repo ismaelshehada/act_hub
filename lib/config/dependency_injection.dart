@@ -41,7 +41,7 @@ initModule() async {
 
   instance.registerLazySingleton<AppApi>(() => AppApi(dio));
 
-  instance.registerLazySingleton<NetworkInfoImpl>(
+  instance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(InternetConnectionCheckerPlus()));
 }
 
@@ -63,6 +63,9 @@ disposeOutBoarding() {
 }
 
 initLoginModule() {
+  disposeSplash();
+  disposeOutBoarding();
+  disposeRegisterModule();
   if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
     instance.registerLazySingleton<RemoteLoginDataSource>(
       () => RemoteLoginDataSourceImplement(
@@ -91,7 +94,24 @@ initLoginModule() {
   Get.put<LoginController>(LoginController());
 }
 
+disposeLoginModule() {
+  if (GetIt.I.isRegistered<RemoteLoginDataSource>()) {
+    instance.unregister<RemoteLoginDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<LoginRepository>()) {
+    instance.unregister<LoginRepository>();
+  }
+
+  if (GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.unregister<LoginUseCase>();
+  }
+  Get.delete<LoginController>();
+}
+
 initRegisterModule() {
+  disposeLoginModule();
+
   if (!GetIt.I.isRegistered<RemoteRegisterDataSource>()) {
     instance.registerLazySingleton<RemoteRegisterDataSource>(
       () => RemoteRegisterDataSourceImplement(
@@ -104,7 +124,7 @@ initRegisterModule() {
     instance.registerLazySingleton<RegisterRepository>(
       () => RegisterRepositoryImpl(
         instance(),
-        instance(),
+        instance<NetworkInfo>(),
       ),
     );
   }
@@ -117,4 +137,19 @@ initRegisterModule() {
     );
   }
   Get.put<RegisterController>(RegisterController());
+}
+
+disposeRegisterModule() {
+  if (GetIt.I.isRegistered<RemoteRegisterDataSource>()) {
+    instance.unregister<RemoteRegisterDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<RegisterRepository>()) {
+    instance.unregister<RegisterRepository>();
+  }
+
+  if (GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance.unregister<RegisterUseCase>();
+  }
+  Get.delete<RegisterController>();
 }
