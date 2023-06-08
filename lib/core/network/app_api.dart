@@ -2,6 +2,7 @@ import 'package:act_hub/config/constants.dart';
 import 'package:act_hub/config/request_constants.dart';
 import 'package:act_hub/features/auth/data/response/login_response.dart';
 import 'package:act_hub/features/auth/data/response/register_response.dart';
+import 'package:act_hub/features/home/data/response/home_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -22,10 +23,13 @@ abstract class AppApi {
 
   @POST(RequestConstants.register)
   Future<RegisterResponse> register(
-      @Field(ApiConstant.name) name,
-      @Field(ApiConstant.email) email,
-      @Field(ApiConstant.password) password,
-      @Field(ApiConstant.passwordConfirmation) passwordConfirmation,
-      @Field(ApiConstant.phone) phone,
-      );
+    @Field(ApiConstant.name) name,
+    @Field(ApiConstant.email) email,
+    @Field(ApiConstant.password) password,
+    @Field(ApiConstant.passwordConfirmation) passwordConfirmation,
+    @Field(ApiConstant.phone) phone,
+  );
+
+  @GET(RequestConstants.home)
+  Future<HomeResponse> home();
 }
