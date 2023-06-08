@@ -1,3 +1,4 @@
+import 'package:act_hub/core/extensions/extensions.dart';
 import 'package:act_hub/features/auth/presentation/controller/register_controller.dart';
 import 'package:act_hub/features/auth/presentation/view/widget/auth_view.dart';
 import 'package:flutter/material.dart';
@@ -83,8 +84,10 @@ class RegisterView extends StatelessWidget {
                   Row(
                     children: [
                       Checkbox(
-                        value: true,
-                        onChanged: (value) {},
+                        value: controller.isAgreePolicy,
+                        onChanged: (value) {
+                          controller.changePolicyStatus(value.onNull());
+                        },
                         activeColor: ManagerColors.primaryColor,
                         shape: RoundedRectangleBorder(
                             borderRadius:
@@ -113,7 +116,7 @@ class RegisterView extends StatelessWidget {
                       height: ManagerHeight.h40,
                       onPress: () {
                         if (controller.formKey.currentState!.validate()) {
-                          controller.register(context);
+                          controller.performRegister(context);
                         }
                       }),
                   Row(
