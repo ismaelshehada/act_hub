@@ -3,10 +3,15 @@ import 'package:act_hub/core/network/app_api.dart';
 import 'package:act_hub/core/network/dio_factory.dart';
 import 'package:act_hub/core/storage/local/app_settings_shared_preferences.dart';
 import 'package:act_hub/features/auth/data/data_source/remote_login_data_source.dart';
+import 'package:act_hub/features/auth/data/data_source/remote_register_data_source.dart';
 import 'package:act_hub/features/auth/data/repository_impl/login_repository_impl.dart';
+import 'package:act_hub/features/auth/data/repository_impl/register_repository_impl.dart';
 import 'package:act_hub/features/auth/domin/repository/login_repository.dart';
+import 'package:act_hub/features/auth/domin/repository/register_repository.dart';
 import 'package:act_hub/features/auth/domin/use_case/login_use_case.dart';
+import 'package:act_hub/features/auth/domin/use_case/register_use_case.dart';
 import 'package:act_hub/features/auth/presentation/controller/login_controller.dart';
+import 'package:act_hub/features/auth/presentation/controller/register_controller.dart';
 import 'package:act_hub/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
@@ -36,7 +41,7 @@ initModule() async {
 
   instance.registerLazySingleton<AppApi>(() => AppApi(dio));
 
-  instance.registerLazySingleton<NetworkInfoImpl>(
+  instance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(InternetConnectionCheckerPlus()));
 }
 
@@ -58,8 +63,9 @@ disposeOutBoarding() {
 }
 
 initLoginModule() {
-
-
+  disposeSplash();
+  disposeOutBoarding();
+  disposeRegisterModule();
   if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
     instance.registerLazySingleton<RemoteLoginDataSource>(
       () => RemoteLoginDataSourceImplement(
@@ -86,4 +92,64 @@ initLoginModule() {
   }
 
   Get.put<LoginController>(LoginController());
+}
+
+disposeLoginModule() {
+  if (GetIt.I.isRegistered<RemoteLoginDataSource>()) {
+    instance.unregister<RemoteLoginDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<LoginRepository>()) {
+    instance.unregister<LoginRepository>();
+  }
+
+  if (GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.unregister<LoginUseCase>();
+  }
+  Get.delete<LoginController>();
+}
+
+initRegisterModule() {
+  disposeLoginModule();
+
+  if (!GetIt.I.isRegistered<RemoteRegisterDataSource>()) {
+    instance.registerLazySingleton<RemoteRegisterDataSource>(
+      () => RemoteRegisterDataSourceImplement(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<RegisterRepository>()) {
+    instance.registerLazySingleton<RegisterRepository>(
+      () => RegisterRepositoryImpl(
+        instance(),
+        instance<NetworkInfo>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance.registerLazySingleton<RegisterUseCase>(
+      () => RegisterUseCase(
+        instance(),
+      ),
+    );
+  }
+  Get.put<RegisterController>(RegisterController());
+}
+
+disposeRegisterModule() {
+  if (GetIt.I.isRegistered<RemoteRegisterDataSource>()) {
+    instance.unregister<RemoteRegisterDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<RegisterRepository>()) {
+    instance.unregister<RegisterRepository>();
+  }
+
+  if (GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance.unregister<RegisterUseCase>();
+  }
+  Get.delete<RegisterController>();
 }
