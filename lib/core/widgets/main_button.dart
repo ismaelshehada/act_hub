@@ -11,8 +11,10 @@ Widget mainButton({
   double? minWidth,
   double? height,
   double? elevation,
+  EdgeInsetsGeometry? padding,
 }) {
   return MaterialButton(
+    padding: padding,
     onPressed: onPress ?? () {},
     shape: shapeBorder ??
         RoundedRectangleBorder(

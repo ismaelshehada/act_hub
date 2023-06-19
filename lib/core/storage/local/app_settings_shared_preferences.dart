@@ -9,12 +9,12 @@ class AppSettingsSharedPreferences {
 
   Future<void> setOutBoardingViewed() async {
     await _sharedPreferences.setBool(
-        ConstantsPrefsKey.outBoardingViewed, true);
+        ConstantsPrefsKey.outBoardingViewedKey, true);
   }
 
   bool getOutBoardingViewed() {
     return _sharedPreferences
-        .getBool(ConstantsPrefsKey.outBoardingViewed)
+        .getBool(ConstantsPrefsKey.outBoardingViewedKey)
         .onNull();
   }
 

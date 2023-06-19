@@ -23,10 +23,10 @@ class DioFactory {
       baseUrl: ApiConstant.baseUrl,
       headers: headers,
       sendTimeout: const Duration(
-        seconds: ApiConstant.sendTimeoutDuration,
+        seconds: ApiConstant.sendTimeOutDuration,
       ),
       receiveTimeout: const Duration(
-        seconds: ApiConstant.receiveTimeoutDuration,
+        seconds: ApiConstant.receiveTimeOutDuration,
       ),
     );
 

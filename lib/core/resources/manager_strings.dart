@@ -35,4 +35,51 @@ class ManagerStrings {
   static const String forgotPassword = 'Forgot Password ?';
   static const String rememberMe = 'Remember me';
   static const String agreePolicy = 'I agree to our Terms of service and Privacy policy';
+  static const String error = 'error';
+  static const String shouldAgreePolicy = 'I agree to our Terms of service and Privacy policy';
+  static const String empty = '';
+  static const String categories = 'Categories';
+  static const String seeAll = 'See All';
+  static const String viewAll = 'View All';
+  static const String bookNow = 'Book now';
+  static const String rate = '4,8/5';
+  static const String review = '(102 Review)';
+  static const String hours = '45 Hour';
+  static const String descriptionCourses =
+      'Basic User Interface \nDesign for Beginner';
+  static const String office = 'Office';
+  static const String design = 'DESIGN';
+  static const String meetingRoom = 'Meeting Room';
+  static const String sharedDesk = 'Shared Desk';
+  static const String recordingStudio = 'recording studio';
+  static const String playStation = 'Play Station';
+  static const String board = 'Board';
+  static const String popularCourses = 'Popular Courses';
+  static const String subTitleVerification = "Enter the code please";
+  static const String verificationCode = "Verification Code";
+  static const String verifyMessage =
+      'Please , Enter the code we sent to your email to verify your account';
+  static const String invalidEmptyCode = "This field is required";
+  static const String resendCode = 'If you didn\'t receive a code';
+  static const String resend = 'Resend';
+  static const String INTERNAL_SERVER_ERROR =
+      'Internal Server Error, Try Again Later';
+  static const String UNKNOWN = 'UnKnown, Try Again Later';
+  static const String shouldAgreePolicies = 'Should Agree Terms and Policies';
+  static const String badRequest = "Sorry Bad Request, Try Again Later";
+  static const String verificationSuccess =
+      'The code has been verified, login now';
+  static const String sorryFailed = 'Sorry Failed';
+  static const String sendOtpSuccess = 'The code has been sent successfully';
+  static const String passwordChangeSuccess = 'Password changed successfully';
+  static const String wrongRequestSent = 'Wrong request sent';
+  static const String forgetPassword = 'Forget Password ?';
+  static const String forgetSubTitle =
+      'To reset your password, enter \n your e-mail';
+  static const String resetSubTitle =
+      'To reset your password, enter \n otp and new password';
+  static const String confirmPass = 'Confirm Password';
+  static const String confirm = 'Confirm';
+  static const String changePassword = 'Change Password';
+  static const String notVerifiedEmail = 'Your email address is not verified..';
 }

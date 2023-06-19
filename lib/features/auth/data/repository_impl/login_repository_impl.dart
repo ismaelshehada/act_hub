@@ -10,7 +10,7 @@ import 'package:dartz/dartz.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final RemoteLoginDataSource _dataSource;
-  final NetworkInfoImpl networkInfoImpl;
+  final NetworkInfo networkInfoImpl;
 
   LoginRepositoryImpl(this._dataSource, this.networkInfoImpl);
 
