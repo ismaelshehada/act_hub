@@ -4,22 +4,27 @@ import 'package:act_hub/core/resources/manager_fonts.dart';
 import 'package:act_hub/core/resources/manager_sizes.dart';
 import 'package:act_hub/core/resources/manager_styles.dart';
 import 'package:flutter/material.dart';
-
 TextFormField baseTextFormField({
   required TextEditingController controller,
   String? hintText,
   TextInputType? keyboardType,
   bool? obscureText,
   validator,
+  FocusNode? focusNode,
+  onChange,
 }) {
   return TextFormField(
+    style: getRegularTextStyle(
+      fontSize: ManagerFontSize.s16,
+      color: ManagerColors.black,
+    ),
     controller: controller,
     keyboardType: keyboardType,
     cursorColor: ManagerColors.primaryColor,
     obscureText: obscureText.onNull(),
     validator: validator,
-    style: getRegularTextStyle(
-        fontSize: ManagerFontSize.s16, color: ManagerColors.black),
+    focusNode: focusNode,
+    onChanged: onChange ?? (val) {},
     decoration: InputDecoration(
       filled: true,
       contentPadding: EdgeInsets.symmetric(
@@ -42,7 +47,7 @@ TextFormField baseTextFormField({
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
-          color: ManagerColors.white,
+          color: ManagerColors.primaryColor,
         ),
         borderRadius: BorderRadius.circular(
           ManagerRadius.r6,

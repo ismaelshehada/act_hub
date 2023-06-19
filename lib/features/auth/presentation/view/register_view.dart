@@ -14,7 +14,7 @@ import '../../../../core/widgets/main_button.dart';
 import '../../../../routes/routes.dart';
 
 class RegisterView extends StatelessWidget {
-  final FailedValidator _failedValidator = FailedValidator();
+  final FieldValidator _failedValidator = FieldValidator();
 
   @override
   Widget build(BuildContext context) {

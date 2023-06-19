@@ -19,7 +19,20 @@ class LoginController extends GetxController {
   final AppSettingsSharedPreferences _appSettingsSharedPreferences =
       instance<AppSettingsSharedPreferences>();
 
-  Future<void> login(BuildContext context) async {
+  bool rememberMe = false;
+
+  changeRememberMe(bool status) {
+    rememberMe = status;
+    update();
+  }
+
+  void performLogin(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      _login(context);
+    }
+  }
+
+  Future<void> _login(BuildContext context) async {
     dialogRender(
         context: context,
         stateRenderType: StateRenderType.popUpLoadingState,
@@ -41,17 +54,19 @@ class LoginController extends GetxController {
             horizontal: ManagerWidth.w65,
           ),
           child: dialogButton(
-            onPressed: () {
-              Get.back();
-            },
-            message: ManagerStrings.ok,
-          ),
+              message: ManagerStrings.ok,
+              onPressed: () {
+                Get.back();
+              }),
         ),
         retryAction: () {},
       );
     }, (r) {
-      _appSettingsSharedPreferences.setEmail(email.text);
-      _appSettingsSharedPreferences.setPassword(password.text);
+      if (rememberMe) {
+        _appSettingsSharedPreferences.setEmail(email.text);
+        _appSettingsSharedPreferences.setPassword(password.text);
+        _appSettingsSharedPreferences.setLoggedIn();
+      }
       _appSettingsSharedPreferences.setToken(r.token.onNull());
       Get.back();
       dialogRender(
@@ -66,9 +81,9 @@ class LoginController extends GetxController {
           child: dialogButton(
             onPressed: () {
               Get.back();
-              Get.offAllNamed(Routes.homeView);
+              Get.offAllNamed(Routes.mainView);
             },
-            message: ManagerStrings.ok,
+            message: ManagerStrings.thanks,
           ),
         ),
         retryAction: () {},
@@ -77,7 +92,7 @@ class LoginController extends GetxController {
           const Duration(
             seconds: Constants.loginTimer,
           ), () {
-        Get.offAllNamed(Routes.homeView);
+        Get.offAllNamed(Routes.mainView);
       });
     });
   }
