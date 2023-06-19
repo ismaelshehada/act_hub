@@ -35,4 +35,6 @@ class ManagerStrings {
   static const String forgotPassword = 'Forgot Password ?';
   static const String rememberMe = 'Remember me';
   static const String agreePolicy = 'I agree to our Terms of service and Privacy policy';
+  static const String error = 'error';
+  static const String shouldAgreePolicy = 'I agree to our Terms of service and Privacy policy';
 }

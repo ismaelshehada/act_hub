@@ -1,10 +1,89 @@
+import 'package:act_hub/core/resources/manager_colors.dart';
+import 'package:act_hub/core/resources/manager_sizes.dart';
+import 'package:act_hub/core/resources/manager_strings.dart';
+import 'package:act_hub/core/widgets/will_pop_scope.dart';
+import 'package:act_hub/features/home/presentation/controller/home_controller.dart';
+import 'package:act_hub/features/home/presentation/view/widget/custom_banner.dart';
+import 'package:act_hub/features/home/presentation/view/widget/custom_category.dart';
+import 'package:act_hub/features/home/presentation/view/widget/custom_course.dart';
+import 'package:act_hub/features/home/presentation/view/widget/custom_text.dart';
+import 'package:act_hub/features/home/presentation/view/widget/home_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return willPopScope(
+      child: Scaffold(
+        appBar: homeAppBar(),
+        body: GetBuilder<HomeController>(
+          builder: (controller) {
+            return ListView(
+              children: [
+                SizedBox(height: ManagerHeight.h20),
+                const CustomBanner(),
+                CustomText(
+                  name: ManagerStrings.categories,
+                  nameButton: ManagerStrings.seeAll,
+                  buttonColor: ManagerColors.black.withOpacity(
+                    ManagerOpacity.op0_5,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: ManagerHeight.h48,
+                  child: ListView.builder(
+                    itemCount: controller.categories.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return CustomCategory(
+                        name: controller
+                            .categories[index].attributeCategoryModel!.title
+                            .toString(),
+                        imagePath: controller
+                            .categories[index].attributeCategoryModel!.image
+                            .toString(),
+                        index: index,
+                      );
+                    },
+                  ),
+                ),
+                const CustomText(
+                  name: ManagerStrings.popularCourses,
+                  nameButton: ManagerStrings.viewAll,
+                  buttonColor: ManagerColors.primaryColor,
+                ),
+                Container(
+                  height: ManagerHeight.h500, // Replace with the desired height
+                  child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.popularCourses.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          CustomCourse(
+                            index: index,
+                            // onTap: () => Get.to(() => CourseDescriptionView(index: index + 1)),
+                          ),
+                          Divider(
+                            indent: ManagerWidth.w14,
+                            endIndent: ManagerWidth.w14,
+                            color: ManagerColors.greyLight,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: ManagerHeight.h20),
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 }
